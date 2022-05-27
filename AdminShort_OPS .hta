@@ -1,0 +1,523 @@
+<!DOCTYPE HTML>
+<!-- ----- ExeScript Options Begin -----
+ ScriptType: window,invoker
+ DestDirectory: temp
+ Icon: default
+ 32Bit: yes
+ ----- ExeScript Options End ----- -->
+
+<head>
+
+<title>ADMINSHORT_OPS *SmallVersion*</title>
+
+<meta http-equiv="x-ua-compatible" content="ie=9" />
+
+<script type="text/javascript">
+window.resizeTo( 380, 540 ); // resize HTA
+window.moveTo( ( window.screen.width - 480 ) / 2, ( window.screen.height - 540 ) / 2 ); // center HTA on screen
+</script>
+
+<HTA:APPLICATION
+  applicationname="ADMINSHORT_OPS SmallVersion"
+  id="Small"
+  version="1.0"
+  scroll="no"
+  singleinstance="yes" />
+
+<style type="text/css">
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body
+{
+  color: black;
+  filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0,StartColorStr='#40F0C0',EndColorStr='#108010');
+  font-family: arial, sans-serif;
+  font-size: 12pt;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+a {
+  color: darkgray;
+}
+
+input[type=text] {
+  background-color: white;
+  border: 1px solid silver;
+  color: black;
+  height: 20px;
+  text-align: right;
+  width: 210px;
+}
+
+th {
+  text-align: left;
+}
+
+.Button {
+  border-radius: 8px;
+  font-weight: bold;
+  height: 22px;
+  width: 147px;
+}
+
+.Center {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.Input {
+  background-color: white;
+  border: 1px solid silver;
+  color: black;
+  height: 22px;
+  text-align: right;
+  width: 212px;
+}
+
+.Right {
+  text-align: right;
+}
+</style>
+
+<script language="VBScript">
+self.ResizeTo 660, 650
+Sub Window_Onload
+   self.MoveTo (screen.availWidth - (document.body.clientWidth)-800),50
+End Sub
+</script>
+
+
+<!-- NETSTAT -->
+<script type="text/vbscript"> 
+Sub netstat() 
+Set objShell = CreateObject("WScript.Shell")
+strCommand = "C:\Windows\System32\cmd.exe /k NETSTAT -AO 04"
+objShell.Run strCommand, 1
+End Sub
+</script>
+
+<!-- PING -->
+<script type="text/vbscript"> 
+Sub ping() 
+Set objShell = CreateObject("WScript.Shell")
+strCommand = "C:\Windows\System32\cmd.exe /k PING google.com -t"
+objShell.Run strCommand, 1
+End Sub
+</script>
+
+
+<!-- VER DNS -->
+<script type="text/vbscript"> 
+Sub verdns() 
+Set objShell = CreateObject("WScript.Shell")
+strCommand = "C:\Windows\System32\cmd.exe /c IPCONFIG /displaydns > ResultsADMINSHORT_OPS.dat"
+objShell.Run strCommand, 1
+strCommand = "C:\Windows\System32\cmd.exe /c start notepad ResultsADMINSHORT_OPS.dat"
+objShell.Run strCommand, 1
+
+End Sub
+</script>
+
+<!-- ADMIN. dispositivos -->
+<script type="text/vbscript"> 
+Sub admindisp() 
+Set objShell = CreateObject("WScript.Shell")
+strCommand = "C:\Windows\System32\cmd.exe /c RunDll32.exe devmgr.dll DeviceManager_Execute"
+objShell.Run strCommand, 1
+End Sub
+</script>
+
+<!-- Mensaje-->
+<script type="text/vbscript"> 
+Sub mensaje()
+Const TIMEOUT = 5
+Set objShell = CreateObject("WScript.Shell")
+//objShell.Popup "Disk Report Complete", TIMEOUT
+//objShell.Popup "Stop Icon / Abort, Retry and Ignore Buttons", _
+   //10, "Popup Example", VbOK
+objShell.Popup "Activado", TIMEOUT
+End Sub
+</script>
+
+<!-- Obtener dato -->
+<script type="text/vbscript"> 
+Sub obtener()
+Dim r
+r= BasicTextbox.Value
+Msgbox BasicTextbox.Value, 65, "Aviso del sistema"
+Msgbox "Hola " + r,65, "Aviso del sistema"
+End Sub
+</script>
+
+
+<!-- Introducir dato -->
+<script type="text/vbscript"> 
+Sub introducir()
+Dim t
+t=Inputbox("introduce un nombre","Aviso del sistema","")
+Msgbox "Hola "+t ,65, "Aviso del sistema"
+End Sub
+</script>
+
+<!-- Datos del sistema -->
+
+<script type="text/vbscript">
+Sub sistema()
+Set objShell = CreateObject("WScript.Shell")
+//strCommand = "C:\Windows\System32\cmd.exe /c echo Usuario: %USERNAME% , Maquina: %COMPUTERNAME% , Dominio: %USERDOMAIN%, OS: %OS% >> resultado.dat"
+//strCommand = "C:\Windows\System32\cmd.exe /k echo Usuario: %USERNAME% , Maquina: %COMPUTERNAME% , Dominio: %USERDOMAIN%, OS: %OS%"
+strCommand = "C:\Windows\System32\cmd.exe /k systeminfo"
+objShell.Run strCommand, 1
+End Sub
+</script>
+
+
+<!-- Instalación de antivirus, programa -->
+<script type="text/vbscript">
+Sub instalacion()
+Dim Ans 
+Set objShell = CreateObject("WScript.Shell")
+Ans = MsgBox("Desea continuar con la instalacion?", vbYesNo,"Instalación del antivirus F-Secure")
+Select Case Ans
+  Case vbYes 
+   Msgbox "Si, continuar",65, "Aviso del sistema"
+   strCommand = "C:\Windows\System32\cmd.exe /c start antivirus/F-Secure.exe"
+  Case vbNo  
+   Msgbox "No, cancelar",65, "Aviso"
+   strCommand = "C:\Windows\System32\cmd.exe /c dir"
+End Select
+objShell.Run strCommand, 1
+End Sub
+</script>
+
+<script type="text/vbscript">
+Sub note()
+Dim strApps
+Set objShell = CreateObject("WScript.Shell")
+strApps = "write.exe"
+objShell.Run strApps, 1
+
+
+End Sub 
+</script>
+<script type="text/vbscript">
+Sub pn()
+Dim strApps
+Set objShell = CreateObject("WScript.Shell")
+strApps = "mspaint.exe"
+objShell.Run strApps, 1
+
+
+End Sub 
+</script>
+<script type="text/vbscript">
+Sub pad()
+Dim strApps
+Set objShell = CreateObject("WScript.Shell")
+strApps = "notepad.exe"
+objShell.Run strApps, 1
+
+
+End Sub 
+</script>
+<script type="text/vbscript">
+Sub cmd()
+Dim strApps
+Set objShell = CreateObject("WScript.Shell")
+strApps = "cmd.exe"
+objShell.Run strApps, 1
+
+
+End Sub 
+</script>
+
+<script type="text/vbscript">
+Sub sf()
+Set objShell = CreateObject("WScript.Shell")
+strCommand = "rundll32.exe pcwutl.dll,LaunchApplication C:\Windows\System32\notepad.exe "
+objShell.Run strCommand, 1
+End Sub 
+</script>
+<script type="text/vbscript">
+Sub ck()
+Set objShell = CreateObject("WScript.Shell")
+strCommand = "C:\Windows\System32\cmd.exe /c  rundll32.exe InetCpl.cpl, ClearMyTracksByProcess 2 "
+objShell.Run strCommand, 1
+End Sub 
+</script>
+<script type="text/vbscript">
+Sub rh()
+Set objShell = CreateObject("WScript.Shell")
+strCommand = "C:\Windows\System32\cmd.exe /c  rundll32.exe InetCpl.cpl, ClearMyTracksByProcess 255 "
+objShell.Run strCommand, 1
+End Sub 
+</script>
+<script type="text/vbscript">
+Sub ps()
+Set objShell = CreateObject("WScript.Shell")
+strCommand = "C:\Windows\System32\cmd.exe /c  rundll32.exe InetCpl.cpl, ClearMyTracksByProcess 32 "
+objShell.Run strCommand, 1
+End Sub 
+</script>
+
+<script type="text/vbscript">
+Sub impresora()
+Set objShell = CreateObject("WScript.Shell")
+strCommand = "C:\Windows\System32\cmd.exe /c Rundll32 Shell32.dll,SHHelpShortcuts_RunDLL PrintersFolder"
+objShell.Run strCommand, 1
+End Sub 
+</script>
+
+<script type="text/vbscript">
+Sub ap()
+Set objShell = CreateObject("WScript.Shell")
+strCommand = "C:\Windows\System32\cmd.exe /c  rundll32.exe Shell32.dll, Control_RunDLL Sysdm.cpl ,, 3 "
+objShell.Run strCommand, 1
+End Sub 
+</script>
+
+<script type="text/vbscript">
+Sub iw()
+Set objShell = CreateObject("WScript.Shell")
+strCommand = "C:\Windows\System32\cmd.exe /c  rundll32.exe SHELL32.DLL, ShellAbout "
+objShell.Run strCommand, 1
+End Sub 
+</script>
+
+<script type="text/vbscript">
+Sub nm()
+Set objShell = CreateObject("WScript.Shell")
+strCommand = "C:\Windows\System32\cmd.exe /c  rundll32.exe Shell32.dll, SHHelpShortcuts_RunDLL Connect "
+objShell.Run strCommand, 1
+End Sub 
+</script>
+
+<script type="text/vbscript">
+Sub an()
+Set objShell = CreateObject("WScript.Shell")
+strCommand = "C:\Windows\System32\cmd.exe /c  rundll32.exe shell32.dll, Control_RunDLL NetSetup.cpl "
+objShell.Run strCommand, 1
+End Sub 
+</script>
+
+<script type="text/vbscript">
+Sub fw()
+Set objShell = CreateObject("WScript.Shell")
+strCommand = "C:\Windows\System32\cmd.exe /c  rundll32.exe shell32.dll, Control_RunDLL firewall.cpl "
+objShell.Run strCommand, 1
+End Sub 
+</script>
+
+<script type="text/vbscript">
+Sub descarga()
+Dim vide
+Set objShell = CreateObject("WScript.Shell")
+vide= Video.Value
+Msgbox "Video "+vide,65, "Descargar"
+strCommand = "C:\Windows\System32\cmd.exe /k C:\Users\USUARIO\Desktop\ejemplosProg\utilidades\utilidadesSFW\youtube-dl.exe " + vide
+objShell.Run strCommand, 1
+End Sub 
+</script>
+
+<script type="text/vbscript">
+Sub GetCommand()
+Dim MyComm
+//Dim Resultado
+Dim Resultado2
+Dim aRet 
+Set objShell = CreateObject("WScript.Shell")
+MyComm= MyCommando.Value
+MsgBox "Command: "& MyComm, vbInformation, "ADMINSHORT_CMD" 
+Set aRet = objShell.exec(MyComm)
+Resultado = aRet.StdOut.ReadAll()
+//Aqui va el resultado:
+//MyResultado.Value " =" & Resultado 
+MyResultado2.Value= " " & Resultado 
+End Sub 
+</script>
+
+<script type="text/vbscript">
+Sub GetExecute()
+Dim aRet 
+Dim Resultado3
+Set objShell = CreateObject("WScript.Shell")
+Set regexIP = CreateObject("VBScript.RegExp")
+MyValue= Selector.Value 
+MyIP= My_IP.Value
+Correcto=False
+
+
+If (MyValue <>"") And (MyIP <> "") Then 
+  Msgbox "Command: "&MyValue &" IP: "&MyIP ,vbInformation,"ADMINSHORT_CMD"
+  
+
+  //verificar IP
+  regexIP.Global= True
+  regexIP.Pattern="\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b"
+  Set oMatches = regexIP.Execute(MyIP)
+  For Each oMatch In oMatches
+    //Msgbox "1. Encontrada: "&oMatch.Value,vbInformation,""
+    Correcto=True
+  Next
+
+  If Correcto = True Then 
+    Msgbox "3. Inicia calculo ... "&MyValue&" "&MyIP,vbInformation,""
+    Set aRet = objShell.exec(MyValue&" "&MyIP)
+    Resultado3 = aRet.StdOut.ReadAll()
+    //Aqui va el resultado:
+    MyResultado3.Value= " " & Resultado3
+    
+  End If 
+
+End If
+
+
+
+//Msgbox "Elegiste "&MyValue &" la IP es "&MyIP ,vbInformation,""
+End Sub 
+</script>
+
+<!-- Inicio -->
+<script type="text/vbscript">
+Sub Inicio
+Dim Resultado4
+Dim Resultado5
+Dim Resultado6
+Dim aRet 
+Dim bRet 
+Set objShell = CreateObject("WScript.Shell")
+strCommand="C:\Windows\System32\cmd.exe /c echo %USERNAME%"
+Set aRet = objShell.exec(strCommand)
+Resultado4 = aRet.StdOut.ReadAll()
+MyResultado4.Value=  Resultado4
+
+
+
+strCommand2="C:\Windows\System32\cmd.exe /c ARP -a"
+Set aRet = objShell.exec(strCommand2)
+Resultado5 = aRet.StdOut.ReadAll()
+MyResultado5.Value=  Resultado5
+
+
+//strCommand3= "C:\Windows\System32\cmd.exe /c nmap -sP 148.215.24.*"
+//Set bRet= objShell.exec(strCommand3)
+//Resultado6= bRet.StdOut.ReadAll()
+//MyResultado6.Value=Resultado6
+
+End Sub
+</script>
+
+
+
+<!-- Limpiar -->
+<script type="text/vbscript">
+Sub Limpiar
+MyResultado2.Value=""
+MyResultado3.Value=""
+//Video.Value=""
+My_IP.Value=""
+MyCommando.Value=""
+End Sub 
+</script>
+
+
+<script language="vbscript">
+
+Function btnExit()
+window.close()
+End Function
+
+
+ 
+
+
+
+
+</script>
+
+</head>
+
+
+<body onresize="vbscript:window.setTimeout('CenterWindow()',250,'VBScript')">
+
+<div style="height: 25px;"></div>
+
+<div style="height: 480px; margin: auto; width: 400px;">
+
+<table style="height: 320px; width: 400px;">
+<tr title="Enter a decimal number">
+
+</tr>
+<tr title="Use the buttons to enter an Attic numeral">
+
+</tr>
+<tr>
+  <th colspan="7">&nbsp;</th>
+</tr>
+<tr>
+</tr>
+<tr>
+  <th><input type="button" class="Button" value="See DNS" onclick="vbscript:verdns( )" /></th>
+  <th></th>
+  <th></th>
+  <th></th>
+  <th><input type="button" class="Button" value="System licence" onclick="vbscript:iw( )" /></th>
+  <th></th>
+  <th></th>
+</tr>
+<tr>
+  <th><input type="button" class="Button" value="Network Statistics" onclick="vbscript:netstat( )" /></th>
+  <th></th>
+  <th></th>
+  <th></th>
+  <th><input type="button" class="Button" value="Network Connection" onclick="vbscript:ping( )" /></th>
+  <th></th>
+  <th><img id="Attic0050Src" width="18" height="18" alt="50" /></th>
+</tr>
+<tr>
+  <th><input type="button" class="Button" value="Network Mapping" onclick="vbscript:sf( )" /></th>
+  <th></th>
+  <th></th>
+  <th></th>
+  <th><input type="button" class="Button" value="FireWall" onclick="vbscript:fw( )" /></th>
+  <th></th>
+  <th><img id="Attic0500Src" width="18" height="18" alt="500" /></th>
+</tr>
+<tr>
+  <th><input type="button" class="Button" value="Admin Devices" onclick="vbscript:admindisp( )" /></th>
+  <th></th>
+  <th></th>
+  <th></th>
+  <th><input type="button" class="Button" value="Run CMD" onclick="vbscript:cmd( )" /></th>
+  <th></th>
+  <th><img id="Attic5000Src" width="18" height="18" alt="5000" /></th>
+</tr>
+<tr>
+  <th><input type="button" class="Button" value="System Information" onclick="vbscript:sistema( )" /></th>
+  <th></th>
+  <th></th>
+  <th></th>
+  <th><input type="button" class="Button" value="printers" onclick="vbscript:impresora( )" /></th>
+  <th></th>
+  <th></th>
+
+</tr>
+</table>
+
+<div style="height: 25px;"></div>
+
+<p class="Center"><span id="AppName"></span>,&nbsp;  <span id="AppVersion"></span><br />
+ADMINSHORT_OPS <br />
+
+
+</div>
+
+</body>
+</html>
